@@ -1,3 +1,5 @@
+def mvnHome = "tool name: 'maven3', type: 'maven'"
+
 pipeline{
 
       agent any
@@ -5,7 +7,6 @@ pipeline{
         stages{
 
               stage('Quality Gate Status Check'){
-		  def mvnHome = tool name: 'maven3', type: 'maven'
                   steps{
                       script{
 			      withSonarQubeEnv('sonarserver') { 
