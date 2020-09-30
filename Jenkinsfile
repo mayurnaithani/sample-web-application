@@ -1,5 +1,3 @@
-def mvnHome = tool name: 'maven3', type: 'maven'
-
 pipeline{
 
       agent any
@@ -10,8 +8,10 @@ pipeline{
                   steps{
                       script{
 			      withSonarQubeEnv('sonarserver') { 
-			      sh "${mvnHome}/bin/mvn sonar:sonar"
-                       	     	}
+				 withMaven {
+			      sh "mvn sonar:sonar"
+				 }
+				}
 			      timeout(time: 1, unit: 'HOURS') {
 			      def qg = waitForQualityGate()
 				      if (qg.status != 'OK') {
