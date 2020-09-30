@@ -8,7 +8,7 @@ pipeline{
                   steps{
                       script{
 			      withSonarQubeEnv('sonarserver') { 
-				 withMaven {
+				 withMaven(maven: 'maven3') {
 			      sh "mvn sonar:sonar"
 				 }
 				}
