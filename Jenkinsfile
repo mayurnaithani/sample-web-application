@@ -5,10 +5,11 @@ pipeline{
         stages{
 
               stage('Quality Gate Status Check'){
+		  def mvnHome = tool name: 'maven3', type: 'maven'
                   steps{
                       script{
 			      withSonarQubeEnv('sonarserver') { 
-			      sh "mvn sonar:sonar"
+			      sh "${mvnHome}/bin/mvn sonar:sonar"
                        	     	}
 			      timeout(time: 1, unit: 'HOURS') {
 			      def qg = waitForQualityGate()
