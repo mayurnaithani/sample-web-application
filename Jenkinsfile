@@ -9,7 +9,7 @@ pipeline{
                       script{
 			      withSonarQubeEnv('sonarserver') { 
 				 withMaven(maven: 'maven3') {
-			      sh "mvn sonar:sonar"
+			      sh "mvn sonar:sonar -Dsonar.projectKey=test-project"
 				 }
 				}
 			      timeout(time: 1, unit: 'HOURS') {
